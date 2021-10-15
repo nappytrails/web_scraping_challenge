@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Latest on Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h1>The Latest on Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Update!</a></p>
+        </div>
+
+        <!-- Latest Mars news story -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="heading">{{ mars_display["article_title"] }}</h2>
+                {{ mars_display['article_teaser'] }}
+            </div>
+        </div>
+
+        <!-- Featured Mars image & Facts Table-->
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="heading">Featured Mars Image</h2>
+                <img src={{ mars_display['featured_image'] }} title="Featured Image of Mars" width="100%">
+            </div>
+
+            <div class="col-md-4">
+                {{ mars_display['table_html'] | safe }}
+            </div>
+        </div>
+    
+        <!-- Hemispheres Photos and Text-->
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="heading">Mars Hemispheres</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for hemisphere in mars_display['hemispheres'] %}
+                <div class="col-md-6">
+                    <img src={{ hemisphere['img_url'] }} title="Featured Image of Mars" width="100%"><br>
+                    <h3 class="heading">{{ hemisphere['title'] }}</h3>
+                </div>
+            {% endfor %}
+       </div>
+
+    </div>
+</body>
+</html>
+
